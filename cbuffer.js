@@ -175,6 +175,7 @@ CBuffer.prototype = {
 		return true;
 	},
 	// loop through each item in buffer
+	// TODO: figure out how to emulate Array use better
 	forEach : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
@@ -182,6 +183,7 @@ CBuffer.prototype = {
 		}
 	},
 	// check items agains test until one returns true
+	// TODO: figure out how to emuldate Array use better
 	some : function (callback, context) {
 		var i = 0;
 		for (; i < this.size; i++) {
@@ -212,6 +214,7 @@ CBuffer.prototype = {
 		// reposition start/end
 		this.start = 0;
 		this.end = this.length - 1;
+		this.size = this.length;
 		return this;
 	},
 	// return first item in buffer
@@ -225,6 +228,9 @@ CBuffer.prototype = {
 	// return specific index in buffer
 	get : function (arg) {
 		return this.data[(this.start + arg) % this.length];
+	},
+	isFull : function (arg) {
+		return this.length === this.size;
 	},
 	// set value at specified index
 	set : function (idx, arg) {
